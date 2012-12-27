@@ -9,7 +9,7 @@ bindkey -e               # キーバインドをemacsモードに設定
 setopt no_beep           # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する 
 setopt auto_pushd        # cd時にディレクトリスタックにpushdする
-setopt correct           # コマンドのスペルを訂正する
+#setopt correct          # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
@@ -111,6 +111,8 @@ case "${OSTYPE}" in
     export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
   ;;
 esac
+
+stty stop undef
 
 ### Aliases ###
 alias r=rails
