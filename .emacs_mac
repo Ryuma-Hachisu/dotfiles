@@ -22,6 +22,8 @@
 
 (setq transpose-chars nil)
 
+;; リージョンだす
+(setq-default transient-mark-mode t)
 
 ;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
@@ -92,7 +94,7 @@
 ;; 文字の色を設定します。
 (add-to-list 'default-frame-alist '(foreground-color . "black"))
 ;; 背景色を設定します。
-(add-to-list 'default-frame-alist '(background-color . "white"))
+(add-to-list 'default-frame-alist '(background-color ."white"))
 ;; カーソルの色を設定します。
 (add-to-list 'default-frame-alist '(cursor-color . "SlateBlue2"))
 ;; マウスポインタの色を設定します。
@@ -170,7 +172,7 @@
 ;;(autoload 'js2-mode "js2-mode" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 
-(add-to-list 'auto-mode-alist '("\\.mm?$" . objc-mode))
+(add-to-list 'auto-mode-alist '("\\.m?$" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.h$" . objc-mode))
 
 
@@ -207,3 +209,5 @@
 (defun run ()
   (interactive)
   (shell-command-to-string "~/bin/xcode-run.sh"))
+  
+(define-key global-map "\C-t" 'undo) 
