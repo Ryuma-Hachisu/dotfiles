@@ -1,6 +1,6 @@
 #!/bin/sh
-ln -s .emacs_mac ../.emacs
-ln -s .emacs.d_mac/ ../.emacs.d
-ln -s .zlogin ../.zlogin
-ln -s .screenrc ../.screenrc
-ln -s .zshrc ../.zshrc
+ln -s ~/dotfiles/.emacs_mac ~/.emacs
+ln -s ~/dotfiles/.emacs.d_mac/ ~/.emacs.d
+ln -s ~/dotfiles/.zlogin ~/.zlogin
+ln -s ~/dotfiles/.screenrc ~/.screenrc
+ln -s ~/dotfiles/.zshrc ~/.zshrc
