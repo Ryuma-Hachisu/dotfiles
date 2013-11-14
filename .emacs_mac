@@ -15,7 +15,7 @@
 (show-paren-mode 1)
 
 ;;; ツールバーを消す
-;;(tool-bar-mode 0)
+(tool-bar-mode 0)
 
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
@@ -141,7 +141,7 @@
          (local-set-key "\M-r" 'gtags-find-rtag)
          (local-set-key "\M-s" 'gtags-find-symbol)
          (local-set-key "\C-t" 'gtags-pop-stack)
-))
+	 ))
 
 (add-hook 'c-mode-common-hook
           '(lambda()
@@ -178,14 +178,15 @@
 
 ;; clipboard
 (if (not window-system)
- (progn(defun copy-from-osx ()
-						(shell-command-to-string "pbpaste"))
-										(defun paste-to-osx (text &optional push) 										       		    	  (let ((process-connection-type nil))
- 													       				   (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
- 																	   	       		      	       		    (process-send-string proc text)
- 																							    			         (process-send-eof proc))))
- 																											 		    (setq interprogram-cut-function 'paste-to-osx)
- 																													    	  			    (setq interprogram-paste-function 'copy-from-osx)))
+    (progn(defun copy-from-osx ()
+	    (shell-command-to-string "pbpaste"))
+	  (defun paste-to-osx (text &optional push) 	
+	    (let ((process-connection-type nil))
+	      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+		(process-send-string proc text)
+		(process-send-eof proc))))
+	  (setq interprogram-cut-function 'paste-to-osx)
+	  (setq interprogram-paste-function 'copy-from-osx)))
 ;; objc, Xcode
 (setq auto-mode-alist (append (list '("\\.h$" . objc-mode)
                                     '("\\.m$" . objc-mode))
@@ -201,13 +202,13 @@
             (setq compile-command "xcodebuild -project ../*.xcodeproj -configuration Debug -sdk iphonesimulator4.3 ")
             (setq compilation-scroll-output t)))
 (defun doc ()
-       (interactive)
+  (interactive)
   (shell-command-to-string "~/bin/xcode-show-doc.sh"))
 (defun xcode ()
-       (interactive)
+  (interactive)
   (shell-command-to-string "~/bin/xcode-show-proj.sh"))
 (defun run ()
   (interactive)
   (shell-command-to-string "~/bin/xcode-run.sh"))
-  
-(define-key global-map "\C-t" 'undo) 
+
+(global-set-key [?\C-/] 'undo)
