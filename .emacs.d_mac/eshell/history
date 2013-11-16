@@ -1,0 +1,6 @@
+ls
+cd Nomdeplume/
+ls
+ls
+ls
+rails new .
