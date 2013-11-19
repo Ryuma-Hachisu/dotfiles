@@ -4,3 +4,22 @@ ls
 ls
 ls
 rails new .
+ls
+ruby test.rb 
+rails s
+rails server
+ls
+cd Downloads/
+ls
+cd ..
+cd Documents/
+ls
+cd Aptana\ Studio\ 3\ Workspace/
+ls
+cd nomdeplume/
+ls
+bundle install
+git add .
+git commit -m "upda"
+git push heroku master
+heroku run rake db:migrate
