@@ -9,7 +9,7 @@ export KCODE=u           # KCODEにUTF-8を設定
 bindkey -e               # キーバインドをemacsモードに設定
 
 setopt no_beep           # ビープ音を鳴らさないようにする
-setopt auto_cd           # ディレクトリ名の入力のみで移動する 
+setopt auto_cd           # ディレクトリ名の入力のみで移動する
 setopt auto_pushd        # cd時にディレクトリスタックにpushdする
 #setopt correct          # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
@@ -125,4 +125,5 @@ function cd() {
   builtin cd $@ && ls;
 }
 
+export PATH=$HOME/.rbenv/bin:$PATH
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
