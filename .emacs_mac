@@ -131,7 +131,7 @@
          (local-set-key "\M-r" 'gtags-find-rtag)
          (local-set-key "\M-s" 'gtags-find-symbol)
          (local-set-key "\C-t" 'gtags-pop-stack)
-	 ))
+         ))
 
 (add-hook 'c-mode-common-hook
           '(lambda()
@@ -144,7 +144,7 @@
              (gtags-mode 1)
              (gtags-make-complete-list)
              ))
-	     
+
 
 ;; (2) And put the following in your ~/.emacs startup file:
 (require 'auto-install)
@@ -183,7 +183,7 @@
          (local-set-key "\M-r" 'gtags-find-rtag)
          (local-set-key "\M-s" 'gtags-find-symbol)
          (local-set-key "\C-t" 'gtags-pop-stack)
-	 ))
+         ))
 
 (add-hook 'c-mode-common-hook
           '(lambda()
@@ -204,11 +204,11 @@
   (defmacro called-interactively-p (arg)
 
     (case arg
-	  (interactive `(interactive-p))
- 
+          (interactive `(interactive-p))
+
       ((any nil) `(called-interactively-p)))))
 
-	     
+
 
 ;; (2) And put the following in your ~/.emacs startup file:
 (require 'auto-install)
@@ -236,14 +236,14 @@
 ;; clipboard
 (if (not window-system)
     (progn(defun copy-from-osx ()
-	    (shell-command-to-string "pbpaste"))
-	  (defun paste-to-osx (text &optional push) 	
-	    (let ((process-connection-type nil))
-	      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-		(process-send-string proc text)
-		(process-send-eof proc))))
-	  (setq interprogram-cut-function 'paste-to-osx)
-	  (setq interprogram-paste-function 'copy-from-osx)))
+            (shell-command-to-string "pbpaste"))
+          (defun paste-to-osx (text &optional push)
+            (let ((process-connection-type nil))
+              (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+                (process-send-string proc text)
+                (process-send-eof proc))))
+          (setq interprogram-cut-function 'paste-to-osx)
+          (setq interprogram-paste-function 'copy-from-osx)))
 
 ;; ruby-mode
 (autoload 'ruby-mode "ruby-mode"
@@ -295,10 +295,10 @@
 (setq rct-get-all-methods-command "PAGER=cat fri -l")
 (define-key anything-map [(control ?;)] 'anything-execute-persistent-action)
 
-;;tree-undo				   
+;;tree-undo
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
-				   
+
 ;; undo機能
 (global-set-key [?\C-/] 'undo)
 
@@ -309,9 +309,12 @@
 ;; antything
 (setq anything-sources
       '(anything-c-source-buffers
-	anything-c-source-recentf
-	anything-c-source-emacs-commands
-	))
+        anything-c-source-recentf
+        anything-c-source-emacs-commands
+        anything-c-source-file-name-history
+        anything-c-source-files-in-current-dir
+        anything-c-source-complex-command-history
+        ))
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)

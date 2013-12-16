@@ -7,3 +7,4 @@ ln -s ~/dotfiles/.zshrc ~/.zshrc
 
 # updatedb使えるようにする
 alias updatedb='/usr/libexec/locate.updatedb'
+git config --global color.ui auto

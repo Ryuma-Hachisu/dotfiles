@@ -125,5 +125,9 @@ function cd() {
   builtin cd $@ && ls;
 }
 
-export PATH=$HOME/.rbenv/bin:$PATH
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+#source ~/git-completion.bash
+#PS1="\h@\u:\W\$(__git_ps1) \$ "
