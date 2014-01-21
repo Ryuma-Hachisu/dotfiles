@@ -1,4 +1,4 @@
-
-*.zshrc#
-
-.emacs.d_mac/history
+abbrev_defs
+history
+#.*#
+.*~
