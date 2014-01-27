@@ -272,12 +272,6 @@
 
 
 
-;;tree-undo
-(when (require 'undo-tree nil t)
-  (global-undo-tree-mode))
-
-;; undo機能
-(global-set-key [?\C-/] 'undo)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
@@ -286,6 +280,15 @@
 
 ;; タイトル出さない
 (setq inhibit-startup-message t)
+
+;;tree-undo
+(when (require 'undo-tree nil t)
+  (global-undo-tree-mode))
+
+
+;; undo機能
+;; ※C-?で Redo
+(global-set-key [?\C-/] 'undo)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;              ruby の設定
@@ -326,4 +329,24 @@
 (font-lock-add-keywords
  'ruby-mode
  '(("\\(\\b\\sw[_a-zA-Z0-9]*:\\)\\(?:\\s-\\|$\\)" (1 font-lock-constant-face))))
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+;; ruby の補正
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq ruby-electric-expand-delimiters-list nil)
+
+
+(require 'rcodetools)
+(setq rct-find-tag-if-available nil)
+(defun ruby-mode-hook-rcodetools ()
+  (define-key ruby-mode-map "\M-\C-i" 'rct-complete-symbol)
+  (define-key ruby-mode-map "\C-c\C-t" 'ruby-toggle-buffer)
+  (define-key ruby-mode-map "\C-c\C-d" 'xmp)
+  (define-key ruby-mode-map "\C-c\C-f" 'rct-ri))
+(add-hook 'ruby-mode-hook 'ruby-mode-hook-rcodetools)
+
+(global-auto-revert-mode 1)
 
