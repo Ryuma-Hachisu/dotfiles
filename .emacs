@@ -1,8 +1,6 @@
 ;; パスを通す
 (setq load-path (cons "~/.emacs.d/elisp" load-path))
 
-(define-key global-map "\C-h" 'delete-backward-char) ; 削除
-(define-key global-map "\C-d" 'delete-backward-char) ; 削除
 
 ;;; Localeに合わせた環境の設定
 (set-locale-environment nil)
@@ -169,3 +167,11 @@
 
 ;;(autoload 'js2-mode "js2-mode" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
+
+;; ミニバッファで C-h でヘルプでないようにする
+(load "term/bobcat")
+(when (fboundp 'terminal-init-bobcat)
+  (terminal-init-bobcat))
+
+(define-key global-map "\C-h" 'delete-backward-char) ; 削除
+(define-key global-map "\C-d" 'delete-backward-char) ; 削除
