@@ -333,6 +333,8 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
+(add-to-list 'auto-mode-alist '(".emacs_mac$" . lisp-mode))
+
 ;; ruby の補正
 (require 'ruby-electric)
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
@@ -350,3 +352,19 @@
 
 (global-auto-revert-mode 1)
 
+;; tags ファイル作成
+;; visit-tags-table タグファイルを指定する
+(setq rinari-tags-file-name "tags")
+
+;;; package.el
+(when (require 'package nil t)
+  ;; パッケージリポジトリにMarmaladeを追加
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
+  ;; インストールしたパッケージにロードパスを通してロードする
+  (package-initialize))
+
+;;; elisp
+(add-to-list 'load-path "~/.emacs.d/elisp/helm")
+(require 'helm-config)
