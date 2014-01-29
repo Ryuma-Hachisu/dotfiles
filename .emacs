@@ -168,10 +168,6 @@
 ;;(autoload 'js2-mode "js2-mode" nil t)
 ;;(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 
-;; ミニバッファで C-h でヘルプでないようにする
-(load "term/bobcat")
-(when (fboundp 'terminal-init-bobcat)
-  (terminal-init-bobcat))
 
-(define-key global-map "\C-h" 'delete-backward-char) ; 削除
-(define-key global-map "\C-d" 'delete-backward-char) ; 削除
+
+

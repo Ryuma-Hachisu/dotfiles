@@ -373,6 +373,11 @@
 ;; 自動補完を無効
 (custom-set-variables '(helm-ff-auto-update-initial-value nil))
 
+;; ミニバッファで C-h でヘルプでないようにする
+(load "term/bobcat")
+(when (fboundp 'terminal-init-bobcat)
+  (terminal-init-bobcat))
+
 (define-key global-map (kbd "M-x")     'helm-M-x)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x C-r") 'helm-recentf)
@@ -439,3 +444,5 @@
 (define-key global-map (kbd "s-u") 'helm-rails-views)
 (define-key global-map (kbd "s-o") 'helm-rails-specs)
 (define-key global-map (kbd "s-r") 'helm-rails-all)
+
+(define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
