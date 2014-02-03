@@ -2,6 +2,14 @@
 
 (setq load-path (cons "~/.emacs.d/elisp" load-path))
 
+(let ((default-directory (expand-file-name "~/.emacs.d/elisp")))
+  (add-to-list 'load-path default-directory)
+  (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+      (normal-top-level-add-subdirs-to-load-path)))
+
+(require 'init-loader)
+(setq init-loader-show-log-after-init nil)
+
 (define-key global-map "\C-h" 'delete-backward-char) ; 削除
 (define-key global-map "\C-d" 'delete-backward-char) ; 削除
 
@@ -358,6 +366,7 @@
 
 ;;; package.el
 (when (require 'package nil t)
+  ;; package.elでelispを入れるdirectoryの設定
   ;; パッケージリポジトリにMarmaladeを追加
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
@@ -365,8 +374,22 @@
   ;; インストールしたパッケージにロードパスを通してロードする
   (package-initialize))
 
+(setq package-user-dir "~/.emacs.d/elisp/elpa/")
+
+;;(defvar my/packages
+;;  '(git-gutter)
+;;  "A list of packages to install from MELPA at launch.")
+
+;; Install Melpa packages
+;;(dolist (package my/packages)
+;;  (when (or (not (package-installed-p package)))
+;;    (package-install package)))
+  
+
+;; melpa.el
+;;(require 'melpa)
+
 ;;; elisp
-(add-to-list 'load-path "~/.emacs.d/elisp/helm")
 (require 'helm-config)
 (helm-mode 1)
 
@@ -436,7 +459,6 @@
 (add-to-list 'helm-source-buffers-list
              '(pattern-transformer helm-buffers-list-pattern-transformer))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/helm-rails")
 (require 'helm-rails-loaddefs)
 
 (define-key global-map (kbd "s-t") 'helm-rails-controllers)
@@ -471,7 +493,7 @@
     (call-interactively 'helm-recentf)))
 
 
-(global-git-gutter-mode +1)
+;;(global-git-gutter-mode +1)
 
 ;; コントロール用のバッファを同一フレーム内に表示
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
