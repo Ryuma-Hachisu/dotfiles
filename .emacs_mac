@@ -446,3 +446,28 @@
 (define-key global-map (kbd "s-r") 'helm-rails-all)
 
 (define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
+
+;; dired の拡張
+(setq dired-dwim-target t)
+
+
+;; helm ls git 
+(require 'helm-ls-git)
+(define-key global-map (kbd "C-x g") 'helm-ls-git-ls)
+
+;; helm recentf only directories
+(defvar helm-c-recentf-directory-source
+  '((name . "Recentf Directry")
+    (candidates . (lambda ()
+                    (loop for file in recentf-list
+                          when (file-directory-p file)
+                          collect file)))
+    (type . file)))
+
+(defun my/helm-recentf (arg)
+  (interactive "P")
+  (if current-prefix-arg
+      (helm-other-buffer helm-c-recentf-directory-source "*helm recentf*")
+    (call-interactively 'helm-recentf)))
+
+
