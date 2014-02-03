@@ -1,3 +1,10 @@
+[user]
+	name = Ryuma-Hachisu
+	email = eagle19860122@gmail.com
+[core]
+	excludesfile = /Users/r.hachisu/.gitignore_global
+[color]
+	ui = auto
 [alias]
 	# いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'

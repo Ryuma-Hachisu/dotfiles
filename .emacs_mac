@@ -393,8 +393,18 @@
 (require 'helm-config)
 (helm-mode 1)
 
+(require 'helm-files)
+(require 'helm-ag)
+
+(setq helm-ag-base-command "ag --nocolor --nogroup")
+
+(require 'helm-files)
+
 ;; 自動補完を無効
 (custom-set-variables '(helm-ff-auto-update-initial-value nil))
+
+;Alt+sでag実行
+(define-key global-map (kbd "M-s")     'helm-ag)
 
 ;; ミニバッファで C-h でヘルプでないようにする
 (load "term/bobcat")
@@ -493,9 +503,13 @@
     (call-interactively 'helm-recentf)))
 
 
-;;(global-git-gutter-mode +1)
+(require 'git-gutter)
+(global-git-gutter-mode +1)
 
 ;; コントロール用のバッファを同一フレーム内に表示
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 ;; diffのバッファを上下ではなく左右に並べる
 (setq ediff-split-window-function 'split-window-horizontally)
+
+;; magitも入れとく
+(require 'magit)

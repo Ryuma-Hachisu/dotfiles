@@ -4,6 +4,7 @@ ln -s ~/dotfiles/.emacs.d_mac/ ~/.emacs.d
 ln -s ~/dotfiles/.zlogin ~/.zlogin
 ln -s ~/dotfiles/.screenrc ~/.screenrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 
 # updatedb使えるようにする
 alias updatedb='/usr/libexec/locate.updatedb'
