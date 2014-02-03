@@ -4,3 +4,6 @@
 [submodule ".emacs.d_mac/elisp/helm-rails"]
 	path = .emacs.d_mac/elisp/helm-rails
 	url = https://github.com/asok/helm-rails.git
+[submodule ".emacs.d_mac/elisp/gitgutter"]
+	path = .emacs.d_mac/elisp/gitgutter
+	url = https://github.com/syohex/emacs-git-gutter.git
