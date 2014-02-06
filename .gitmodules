@@ -7,3 +7,6 @@
 [submodule ".emacs.d_mac/elisp/gitgutter"]
 	path = .emacs.d_mac/elisp/gitgutter
 	url = https://github.com/syohex/emacs-git-gutter.git
+[submodule ".emacs.d_mac/elisp/helm-ag"]
+	path = .emacs.d_mac/elisp/helm-ag
+	url = https://github.com/syohex/emacs-helm-ag.git
