@@ -578,3 +578,4 @@
 (global-set-key [(control tab)] 'shk-tabbar-next)
 (global-set-key [(control shift tab)] 'shk-tabbar-prev)
 
+(setq debug-on-error t)
