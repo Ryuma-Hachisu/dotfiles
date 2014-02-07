@@ -578,4 +578,11 @@
 (global-set-key [(control tab)] 'shk-tabbar-next)
 (global-set-key [(control shift tab)] 'shk-tabbar-prev)
 
+(require 'helm-descbinds)
+(helm-descbinds-mode)
+;; prior to emacs24
+(helm-descbinds-mode 1)
+
+(define-key global-map (kbd "C-c C-b") 'describe-bindings)
+
 ;;(setq debug-on-error t)
