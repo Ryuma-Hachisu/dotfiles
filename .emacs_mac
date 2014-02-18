@@ -20,6 +20,7 @@
 ;;(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
 ;;(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 ;;(define-key global-map (kbd "C-x g") 'helm-ls-git-ls)
+;;(define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
 ;;
 ;;
 ;;;;
@@ -382,16 +383,23 @@
 (setq ruby-electric-expand-delimiters-list nil)
 
 
-(require 'rcodetools)
-(setq rct-find-tag-if-available nil)
-(defun ruby-mode-hook-rcodetools ()
-  (define-key ruby-mode-map "\M-\C-i" 'rct-complete-symbol)
-  (define-key ruby-mode-map "\C-c\C-t" 'ruby-toggle-buffer)
-  (define-key ruby-mode-map "\C-c\C-d" 'xmp)
-  (define-key ruby-mode-map "\C-c\C-f" 'rct-ri))
-(add-hook 'ruby-mode-hook 'ruby-mode-hook-rcodetools)
+;;(require 'rcodetools)
+;;(setq rct-find-tag-if-available nil)
+;;(defun ruby-mode-hook-rcodetools ()
+;;  (define-key ruby-mode-map "\M-\C-i" 'rct-complete-symbol)
+;;  (define-key ruby-mode-map "\C-c\C-t" 'ruby-toggle-buffer)
+;;  (define-key ruby-mode-map "\C-c\C-d" 'xmp)
+;;  (define-key ruby-mode-map "\C-c\C-f" 'rct-ri))
+;;(add-hook 'ruby-mode-hook 'ruby-mode-hook-rcodetools)
 
 (global-auto-revert-mode 1)
+
+
+(require 'rinari)
+
+(require 'rhtml-mode)
+(add-hook 'rhtml-mode-hook
+    (lambda () (rinari-launch)))
 
 ;; tags ファイル作成
 ;; visit-tags-table タグファイルを指定する
@@ -504,11 +512,11 @@
 
 (require 'helm-rails-loaddefs)
 
-(define-key global-map (kbd "s-t") 'helm-rails-controllers)
-(define-key global-map (kbd "s-y") 'helm-rails-models)
-(define-key global-map (kbd "s-u") 'helm-rails-views)
-(define-key global-map (kbd "s-o") 'helm-rails-specs)
-(define-key global-map (kbd "s-r") 'helm-rails-all)
+;;(define-key global-map (kbd "s-t") 'helm-rails-controllers)
+;;(define-key global-map (kbd "s-y") 'helm-rails-models)
+;;(define-key global-map (kbd "s-u") 'helm-rails-views)
+;;(define-key global-map (kbd "s-o") 'helm-rails-specs)
+;;(define-key global-map (kbd "s-r") 'helm-rails-all)
 
 (define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
 
@@ -604,6 +612,12 @@
                 (set-file-modes name (logior mode (logand (/ mode 4) 73)))
                 (message (concat "Wrote " name " (+x)"))))))))
 (add-hook 'after-save-hook 'make-file-executable)
+
+(add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
+(autoload 'csv-mode "csv-mode"
+  "Major mode for editing comma-separated value files." t)
+
+
 
 
 ;;(require 'helm-descbinds)

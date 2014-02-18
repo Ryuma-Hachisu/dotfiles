@@ -122,12 +122,22 @@ alias v=vim
 
 # cdコマンド実行後、lsを実行する
 function cd() {
-  builtin cd $@ && ls;
+  builtin cd $@ && ls && pwd;
 }
 
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+function gem(){
+    $HOME/.rbenv/shims/gem $*
+    if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "uninstall" ] || [ "$1" = "uni" ]
+    then
+        rbenv rehash
+        rehash
+    fi
+}
+
 
 #source ~/git-completion.bash
 #PS1="\h@\u:\W\$(__git_ps1) \$ "
