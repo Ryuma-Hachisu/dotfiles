@@ -618,7 +618,10 @@
   "Major mode for editing comma-separated value files." t)
 
 
-
+(defun close-all-buffers ()
+  (interactive)
+  (loop for buffer being the buffers
+     do (kill-buffer buffer)))
 
 ;;(require 'helm-descbinds)
 ;;(helm-descbinds-mode)
@@ -628,4 +631,5 @@
 ;;(define-key global-map (kbd "C-c C-b") 'describe-bindings)
 
 ;;(setq debug-on-error t)
+
 
