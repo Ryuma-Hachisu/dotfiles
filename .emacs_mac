@@ -624,6 +624,10 @@
   (loop for buffer being the buffers
      do (kill-buffer buffer)))
 
+(setq tags-file-name "~/.tags/tags")
+
+(require 'coffee-mode)
+
 ;;(require 'helm-descbinds)
 ;;(helm-descbinds-mode)
 ;; prior to emacs24
