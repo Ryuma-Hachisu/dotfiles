@@ -627,6 +627,7 @@
 (setq tags-file-name "~/.tags/tags")
 
 (require 'coffee-mode)
+(require 'less-css-mode)
 
 ;;(require 'helm-descbinds)
 ;;(helm-descbinds-mode)
