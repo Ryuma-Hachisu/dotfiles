@@ -588,6 +588,7 @@
 (global-set-key [(control shift tab)] 'shk-tabbar-prev)
 
 (setq make-backup-files t)       ; バックアップファイルを作成する。
+(setq auto-save-default nil)
 ;;; バックアップファイルの保存場所を指定。
 (setq backup-directory-alist
       (cons (cons "\\.*$" (expand-file-name "~/.backup"))
@@ -628,6 +629,13 @@
 
 (require 'coffee-mode)
 (require 'less-css-mode)
+
+
+(define-key global-map [ns-drag-file] 'ns-insert-file)
+
+;; beep音うるさいから消す
+(setq visible-bell t)
+
 
 ;;(require 'helm-descbinds)
 ;;(helm-descbinds-mode)
