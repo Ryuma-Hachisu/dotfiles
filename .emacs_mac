@@ -21,8 +21,11 @@
 ;;(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 ;;(define-key global-map (kbd "C-x g") 'helm-ls-git-ls)
 ;;(define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
-;;
-;;
+;; C-M-{h,j,k,l}でウィンドウ間を移動
+;;(define-key global-map (kbd "C-M-k") 'windmove-up)
+;;(define-key global-map (kbd "C-M-j") 'windmove-down)
+;;(define-key global-map (kbd "C-M-l") 'windmove-right)
+;;(define-key global-map (kbd "C-M-h") 'windmove-left)
 ;;;;
 ;; tabbar
 ;; C-TAB   表タブ
