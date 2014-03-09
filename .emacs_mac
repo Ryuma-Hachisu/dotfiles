@@ -21,8 +21,11 @@
 ;;(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 ;;(define-key global-map (kbd "C-x g") 'helm-ls-git-ls)
 ;;(define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
-;;
-;;
+;; C-M-{h,j,k,l}でウィンドウ間を移動
+;;(define-key global-map (kbd "C-M-k") 'windmove-up)
+;;(define-key global-map (kbd "C-M-j") 'windmove-down)
+;;(define-key global-map (kbd "C-M-l") 'windmove-right)
+;;(define-key global-map (kbd "C-M-h") 'windmove-left)
 ;;;;
 ;; tabbar
 ;; C-TAB   表タブ
@@ -599,6 +602,7 @@
 (global-set-key [(control shift tab)] 'shk-tabbar-prev)
 
 (setq make-backup-files t)       ; バックアップファイルを作成する。
+(setq auto-save-default nil)
 ;;; バックアップファイルの保存場所を指定。
 (setq backup-directory-alist
       (cons (cons "\\.*$" (expand-file-name "~/.backup"))
@@ -639,6 +643,21 @@
 
 (require 'coffee-mode)
 (require 'less-css-mode)
+
+
+(define-key global-map [ns-drag-file] 'ns-insert-file)
+
+;; beep音うるさいから消す
+(setq visible-bell t)
+
+;; 反対側のウィンドウにいけるように
+(setq windmove-wrap-around t)
+;; C-M-{h,j,k,l}でウィンドウ間を移動
+(define-key global-map (kbd "C-M-p") 'windmove-up)
+(define-key global-map (kbd "C-M-n") 'windmove-down)
+(define-key global-map (kbd "C-M-f") 'windmove-right)
+(define-key global-map (kbd "C-M-b") 'windmove-left)
+
 
 ;;(require 'helm-descbinds)
 ;;(helm-descbinds-mode)
