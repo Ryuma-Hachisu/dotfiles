@@ -398,9 +398,20 @@
 
 (require 'rinari)
 
-(require 'rhtml-mode)
-(add-hook 'rhtml-mode-hook
-    (lambda () (rinari-launch)))
+;; yasnippetを置いているフォルダにパス
+(add-to-list 'load-path
+             (expand-file-name "~/.emacs.d/elisp/el-get/package/elpa/yasnippet-20140303.53"))
+
+(require 'yasnippet)
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/elisp/el-get/package/elpa/yasnippet-20140303.53/snippets"
+        ))
+(yas-global-mode 1)
+
+;;(require 'rhtml-mode)
+;;(add-hook 'rhtml-mode-hook
+;;    (lambda () (rinari-launch)))
 
 ;; tags ファイル作成
 ;; visit-tags-table タグファイルを指定する
@@ -635,6 +646,22 @@
 ;;(helm-descbinds-mode 1)
 
 ;;(define-key global-map (kbd "C-c C-b") 'describe-bindings)
+
+;; 英語
+ (set-face-attribute 'default nil
+             :family "Menlo" ;; font
+             :height 150)    ;; font size
+
+;; 日本語
+(set-fontset-font
+ nil 'japanese-jisx0208
+;; (font-spec :family "Hiragino Mincho Pro")) ;; font
+  (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
+
+;; 半角と全角の比を1:2にしたければ
+(setq face-font-rescale-alist
+;;        '((".*Hiragino_Mincho_pro.*" . 1.2)))
+      '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2)));; Mac用フォント設定
 
 ;;(setq debug-on-error t)
 

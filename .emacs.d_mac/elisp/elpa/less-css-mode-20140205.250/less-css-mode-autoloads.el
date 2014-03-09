@@ -4,8 +4,9 @@
 
 
 ;;;### (autoloads (less-css-mode less-css-compile) "less-css-mode"
-;;;;;;  "less-css-mode.el" (21267 60377 0 0))
-;;; Generated autoloads from less-css-mode.el
+;;;;;;  "../../../../../.emacs.d/elisp/elpa/less-css-mode-20140205.250/less-css-mode.el"
+;;;;;;  "2b47008bd75f34b58e8306362c5dee94")
+;;; Generated autoloads from ../../../../../.emacs.d/elisp/elpa/less-css-mode-20140205.250/less-css-mode.el
 
 (autoload 'less-css-compile "less-css-mode" "\
 Compiles the current buffer to css using `less-css-lessc-command'.
@@ -23,8 +24,9 @@ Special commands:
 
 ;;;***
 
-;;;### (autoloads nil nil ("less-css-mode-pkg.el") (21267 60377 255253
-;;;;;;  0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elisp/elpa/less-css-mode-20140205.250/less-css-mode-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elisp/elpa/less-css-mode-20140205.250/less-css-mode.el")
+;;;;;;  (21276 31467 536477 0))
 
 ;;;***
 
