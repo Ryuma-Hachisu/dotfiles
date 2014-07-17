@@ -1,8 +1,8 @@
 [user]
-	name = Ryuma-Hachisu
-	email = eagle19860122@gmail.com
+	name = hachisu_ryuma
+	email = hachisu_ryuma@grenge.co.jp
 [core]
-	excludesfile = /Users/r.hachisu/.gitignore_global
+	excludesfile = /Users/B05510/.gitignore_global
 [color]
 	ui = auto
 [alias]
@@ -21,3 +21,9 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
