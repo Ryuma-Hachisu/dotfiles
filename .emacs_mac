@@ -525,7 +525,7 @@
 (add-to-list 'helm-source-buffers-list
              '(pattern-transformer helm-buffers-list-pattern-transformer))
 
-(require 'helm-rails-loaddefs)
+;;(require 'helm-rails-loaddefs)
 
 ;;(define-key global-map (kbd "s-t") 'helm-rails-controllers)
 ;;(define-key global-map (kbd "s-y") 'helm-rails-models)
