@@ -48,6 +48,13 @@
 (require 'init-loader)
 (setq init-loader-show-log-after-init nil)
 
+(condition-case nil
+    (called-interactively-p nil)
+  (defmacro called-interactively-p (arg)
+    (case arg
+      (interactive `(interactive-p))
+      ((any nil) `(called-interactively-p)))))
+
 (define-key global-map "\C-h" 'delete-backward-char) ; 削除
 (define-key global-map "\C-d" 'delete-backward-char) ; 削除
 
