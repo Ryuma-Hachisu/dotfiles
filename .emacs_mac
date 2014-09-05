@@ -323,7 +323,12 @@
   (interactive)
   (shell-command-to-string "~/bin/xcode-run.sh"))
 
+;;; rhtml mode
+(add-to-list 'load-path "~/.emacs.d/auto-install/rhtml")
+(require 'rhtml-mode)
 
+;; Rinari
+(require 'rinari)
 
 
 (require 'recentf)
@@ -337,6 +342,8 @@
 ;;tree-undo
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
+
+(require 'snippet)
 
 
 ;; undo機能
