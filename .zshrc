@@ -141,3 +141,6 @@ function gem(){
 
 #source ~/git-completion.bash
 #PS1="\h@\u:\W\$(__git_ps1) \$ "
+export PATH=/Applications/adt/ndk:$PATH
+export PATH=/Applications/adt-bundle-mac-x86_64-20140702/sdk/tools:$PATH
+export PATH=/Applications/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$PATH
