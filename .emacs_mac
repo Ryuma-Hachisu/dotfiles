@@ -399,19 +399,6 @@
 (global-auto-revert-mode 1)
 
 
-(require 'rinari)
-
-;; yasnippetを置いているフォルダにパス
-(add-to-list 'load-path
-             (expand-file-name "~/.emacs.d/elisp/el-get/package/elpa/yasnippet-20140303.53"))
-
-(require 'yasnippet)
-
-(setq yas-snippet-dirs
-      '("~/.emacs.d/elisp/el-get/package/elpa/yasnippet-20140303.53/snippets"
-        ))
-(yas-global-mode 1)
-
 ;;(require 'rhtml-mode)
 ;;(add-hook 'rhtml-mode-hook
 ;;    (lambda () (rinari-launch)))
@@ -642,6 +629,10 @@
 (setq tags-file-name "~/.tags/tags")
 
 (require 'coffee-mode)
+(autoload 'coffee-mode "coffee-mode" "Major mode for editing CoffeeScript." t)
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode)) 
+
 (require 'less-css-mode)
 
 
