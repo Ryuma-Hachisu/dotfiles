@@ -323,7 +323,12 @@
   (interactive)
   (shell-command-to-string "~/bin/xcode-run.sh"))
 
+;;; rhtml mode
+(add-to-list 'load-path "~/.emacs.d/auto-install/rhtml")
+(require 'rhtml-mode)
 
+;; Rinari
+(require 'rinari)
 
 
 (require 'recentf)
@@ -337,6 +342,8 @@
 ;;tree-undo
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
+
+(require 'snippet)
 
 
 ;; undo機能
@@ -519,13 +526,6 @@
 (add-to-list 'helm-source-buffers-list
              '(pattern-transformer helm-buffers-list-pattern-transformer))
 
-;;(require 'helm-rails-loaddefs)
-
-;;(define-key global-map (kbd "s-t") 'helm-rails-controllers)
-;;(define-key global-map (kbd "s-y") 'helm-rails-models)
-;;(define-key global-map (kbd "s-u") 'helm-rails-views)
-;;(define-key global-map (kbd "s-o") 'helm-rails-specs)
-;;(define-key global-map (kbd "s-r") 'helm-rails-all)
 
 (define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
 
@@ -679,6 +679,10 @@
 (setq face-font-rescale-alist
 ;;        '((".*Hiragino_Mincho_pro.*" . 1.2)))
       '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2)));; Mac用フォント設定
+
+;;; smooth-scroll
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
 
 ;;(setq debug-on-error t)
 
