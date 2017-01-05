@@ -687,6 +687,9 @@
 (require 'smooth-scroll)
 (smooth-scroll-mode t)
 
+(require 'flymake-lua)
+(add-hook 'lua-mode-hook 'flymake-lua-load)
+
 ;;(setq debug-on-error t)
 
 
