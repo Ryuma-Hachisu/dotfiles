@@ -91,14 +91,6 @@ SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
   PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
 ;
 
-### Title (user@hostname) ###
-case "${TERM}" in
-kterm*|xterm*|)
-  precmd() {
-    echo -ne "\033]0;${USER}@${HOST%%.*}\007"
-  }
-  ;;
-esac
 
 # ------------------------------
 # Other Settings
@@ -138,6 +130,52 @@ function gem(){
     fi
 }
 
+# Setup ssh-agent
+if [ -f ~/.ssh-agent ]; then
+    . ~/.ssh-agent
+fi
+if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
+    ssh-agent > ~/.ssh-agent
+    . ~/.ssh-agent
+fi
+ssh-add -l >& /dev/null || ssh-add
+
+
+function delkasu () { find $1 \( -name '.DS_Store' -o -name '._*' -o -name '.apdisk' -o -name 'Thumbs.db' -o -name 'Desktop.ini' \) -delete -print; }
 
 #source ~/git-completion.bash
 #PS1="\h@\u:\W\$(__git_ps1) \$ "
+
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT=/Volumes/Transcend/projects/cocos2d-x/tools/cocos2d-console/bin
+#export COCOS_CONSOLE_ROOT=/Volumes/Transcend/pig_cocos/cocos2d-x/tools/cocos2d-console/bin
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+#export COCOS_TEMPLATES_ROOT=/Volumes/Transcend/pig_cocos/cocos2d-x/templates
+export COCOS_TEMPLATES_ROOT=/Volumes/Transcend/projects/cocos2d-x/templates
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+# Add environment variable NDK_ROOT for cocos2d-x
+export NDK_ROOT=/Applications/android-ndk-r10e
+export PATH=$NDK_ROOT:$PATH
+
+# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
+export ANDROID_SDK_ROOT=/Applications/android-sdk-macosx
+export PATH=$ANDROID_SDK_ROOT:$PATH
+export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
+
+# Add environment variable ANT_ROOT for cocos2d-x
+export ANT_ROOT=/Applications/apache-ant-1.9.6/bin
+export PATH=$ANT_ROOT:$PATH
+
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT=/Volumes/Transcend/projects
+export PATH=$COCOS_X_ROOT:$PATH
+
+# Add environment variable SDKBOX_HOME for sdkbox installer
+export SDKBOX_HOME=/Users/eagle/.sdkbox
+export PATH=${SDKBOX_HOME}/bin:$PATH
+
+cd "/Volumes/Transcend"
+

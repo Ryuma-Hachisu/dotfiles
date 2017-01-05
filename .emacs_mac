@@ -267,7 +267,7 @@
 (setq auto-install-directory "~/.emacs.d/elisp/")
 ;; (4) Optionally, if your computer is always connected Internet when Emacs start up,
 ;;     I recommend you add below to your ~/.emacs, to update package name when start up:
-(auto-install-update-emacswiki-package-name t)
+;;(auto-install-update-emacswiki-package-name t)
 ;;     And above setup is not necessary, because AutoInstall will automatically update-emacswiki-package-name;;     package name when you just first call `auto-install-from-emacswiki',
 ;;     above setup just avoid *delay* when you first call `auto-install-from-emacswiki'.d/elisp;;
 ;; (5) I recommend you add below to your ~/.emacs for install-elisp users:
@@ -303,6 +303,10 @@
 (setq auto-mode-alist (append (list '("\\.h$" . objc-mode)
                                     '("\\.m$" . objc-mode))
                               auto-mode-alist))
+
+(setq auto-mode-alist (append (list '("\\.lua$" . lua-mode))
+                              auto-mode-alist))
+
 (add-hook 'objc-mode-hook
           (lambda ()
             (define-key objc-mode-map "\C-c\C-b" 'compile)
@@ -427,7 +431,6 @@
   ;; パッケージリポジトリにMarmaladeを追加
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-  (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
   ;; インストールしたパッケージにロードパスを通してロードする
   (package-initialize))
 
