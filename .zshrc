@@ -177,5 +177,8 @@ export PATH=$COCOS_X_ROOT:$PATH
 export SDKBOX_HOME=/Users/eagle/.sdkbox
 export PATH=${SDKBOX_HOME}/bin:$PATH
 
+export PATH="$HOME/.pyenv/shims:$PATH"
+export NDK_CCACHE=/usr/local/bin/ccache
+
 cd "/Volumes/Transcend"
 
