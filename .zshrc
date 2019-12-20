@@ -1,5 +1,5 @@
 export PATH=$PATH:/sbin
-
+export PATH=/usr/local/bin/heroku:$PATH
 export PATH=/opt/local/lib/postgresql93/bin:$PATH
 
 export EDITOR=emacs        # エディタをvimに設定
@@ -28,13 +28,13 @@ bindkey "^[[Z" reverse-menu-complete  # Shift-Tabで補完候補を逆順する(
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小文字を区別しない
 
 ### Glob ###
-setopt extended_glob # グロブ機能を拡張する
-unsetopt caseglob    # ファイルグロブで大文字小文字を区別しない
+#setopt extended_glob # グロブ機能を拡張する
+#unsetopt caseglob    # ファイルグロブで大文字小文字を区別しない
 
 ### History ###
 HISTFILE=~/.zsh_history   # ヒストリを保存するファイル
 HISTSIZE=10000            # メモリに保存されるヒストリの件数
-SAVEHIST=10000            # 保存されるヒストリの件数
+SAVEHIST=100000           # 保存されるヒストリの件数
 setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_ignore_dups   # 直前と同じコマンドはヒストリに追加しない
@@ -118,7 +118,7 @@ function cd() {
 }
 
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-export PATH="$HOME/.rbenv/bin:$PATH"
+#export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 function gem(){
@@ -131,14 +131,21 @@ function gem(){
 }
 
 # Setup ssh-agent
-if [ -f ~/.ssh-agent ]; then
-    . ~/.ssh-agent
-fi
-if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
-    ssh-agent > ~/.ssh-agent
-    . ~/.ssh-agent
-fi
+#if [ -f ~/.ssh-agent ]; then
+#    . eval `~/.ssh-agent`
+#fi
+#if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
+#    ssh-agent > ~/.ssh-agent
+#    . eval `~/.ssh-agent`
+#fi
+#ssh-add -l >& /dev/null || ssh-add
+
 ssh-add -l >& /dev/null || ssh-add
+
+if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
+    eval `ssh-agent -s`
+    ssh-add
+fi
 
 
 function delkasu () { find $1 \( -name '.DS_Store' -o -name '._*' -o -name '.apdisk' -o -name 'Thumbs.db' -o -name 'Desktop.ini' \) -delete -print; }
@@ -147,18 +154,19 @@ function delkasu () { find $1 \( -name '.DS_Store' -o -name '._*' -o -name '.apd
 #PS1="\h@\u:\W\$(__git_ps1) \$ "
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/Volumes/Transcend/projects/cocos2d-x/tools/cocos2d-console/bin
-#export COCOS_CONSOLE_ROOT=/Volumes/Transcend/pig_cocos/cocos2d-x/tools/cocos2d-console/bin
+export COCOS_CONSOLE_ROOT=/Users/eagle/work/cocos2d-x/tools/cocos2d-console/bin
 export PATH=$COCOS_CONSOLE_ROOT:$PATH
 
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-#export COCOS_TEMPLATES_ROOT=/Volumes/Transcend/pig_cocos/cocos2d-x/templates
-export COCOS_TEMPLATES_ROOT=/Volumes/Transcend/projects/cocos2d-x/templates
+export COCOS_TEMPLATES_ROOT=/Users/eagle/work/cocos2d-x/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
 
 # Add environment variable NDK_ROOT for cocos2d-x
-export NDK_ROOT=/Applications/android-ndk-r10e
+export NDK_ROOT=/Applications/android-sdk-macosx/ndk-bundle
 export PATH=$NDK_ROOT:$PATH
+
+export ANDROID_NDK_HOME=$NDK_ROOT
+export PATH=${PATH}:$ANDROID_NDK_HOME
 
 # Add environment variable ANDROID_SDK_ROOT for cocos2d-x
 export ANDROID_SDK_ROOT=/Applications/android-sdk-macosx
@@ -170,7 +178,7 @@ export ANT_ROOT=/Applications/apache-ant-1.9.6/bin
 export PATH=$ANT_ROOT:$PATH
 
 # Add environment variable COCOS_X_ROOT for cocos2d-x
-export COCOS_X_ROOT=/Volumes/Transcend/projects
+export COCOS_X_ROOT=/Users/eagle/work
 export PATH=$COCOS_X_ROOT:$PATH
 
 # Add environment variable SDKBOX_HOME for sdkbox installer
@@ -180,5 +188,66 @@ export PATH=${SDKBOX_HOME}/bin:$PATH
 export PATH="$HOME/.pyenv/shims:$PATH"
 export NDK_CCACHE=/usr/local/bin/ccache
 
-cd "/Volumes/Transcend"
+export PATH=$PATH:/Users/eagle/.nodebrew/current/bin
 
+export PATH="/usr/local/opt/libxml2/bin:$PATH"
+export PATH="/usr/local/opt/libxslt/bin:$PATH"
+
+#cd "/Users/eagle/work"
+
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/tools/cocos2d-console/bin
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT=/Applications/Cocos/Cocos2d-x
+export PATH=$COCOS_X_ROOT:$PATH
+
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+export COCOS_TEMPLATES_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/templates
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+
+export GO111MODULE=on
+export CLOUD_SDK_REPO=cloud-sdk-stretch
+export PROTO_VERSION=3.6.1
+
+
+export PATH="/Applications/google-cloud-sdk/bin:$PATH"
+export PATH="/Users/eagle/go/bin:$PATH"
+
+export GOPATH="/Users/eagle/go"
+
+eval "$(gcloud beta emulators datastore env-init)"
+export PATH="$(yarn global bin):$PATH"
+export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
+
+export OS_USERNAME=gncu20087559
+export OS_TENANT_ID=36a4d98f50f44f4997cd05ef32688575
+export OS_PASSWORD=ConohaEagle2018
+export OS_AUTH_URL=https://identity.tyo1.conoha.io/v2.0
+export OS_REGION_NAME=tyo2
+
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT="/Users/eagle/work/cocos2d-x/tools/cocos2d-console/bin"
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT="/Users/eagle/work"
+export PATH=$COCOS_X_ROOT:$PATH
+
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+export COCOS_TEMPLATES_ROOT="/Users/eagle/work/cocos2d-x/templates"
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT="/Users/eagle/work/cocos2d-x/tools/cocos2d-console/bin"
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT="/Users/eagle/work"
+export PATH=$COCOS_X_ROOT:$PATH
+
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+export COCOS_TEMPLATES_ROOT="/Users/eagle/work/cocos2d-x/templates"
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
