@@ -119,7 +119,7 @@ function cd() {
 
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 #export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 function gem(){
     $HOME/.rbenv/shims/gem $*
@@ -218,9 +218,9 @@ export PATH="/Users/eagle/go/bin:$PATH"
 
 export GOPATH="/Users/eagle/go"
 
-eval "$(gcloud beta emulators datastore env-init)"
-export PATH="$(yarn global bin):$PATH"
-export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
+#eval "$(gcloud beta emulators datastore env-init)"
+#export PATH="$(yarn global bin):$PATH"
+#export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
 export OS_USERNAME=gncu20087559
 export OS_TENANT_ID=36a4d98f50f44f4997cd05ef32688575

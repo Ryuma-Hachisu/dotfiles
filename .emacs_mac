@@ -450,110 +450,110 @@
 ;;(require 'melpa)
 
 ;;; elisp
-(require 'helm-config)
-(helm-mode 1)
+;;(require 'helm-config)
+;;(helm-mode 1)
 
-(require 'helm-files)
-(require 'helm-ag)
+;;(require 'helm-files)
+;;(require 'helm-ag)
 
-(setq helm-ag-base-command "ag --nocolor --nogroup")
+;;(setq helm-ag-base-command "ag --nocolor --nogroup")
 
-(require 'helm-files)
+;;(require 'helm-files)
 
 ;; 自動補完を無効
-(custom-set-variables '(helm-ff-auto-update-initial-value nil))
+;;(custom-set-variables '(helm-ff-auto-update-initial-value nil))
 
 ;Alt+sでag実行
-(define-key global-map (kbd "M-s")     'helm-ag)
+;;(define-key global-map (kbd "M-s")     'helm-ag)
 
 ;; ミニバッファで C-h でヘルプでないようにする
 (load "term/bobcat")
 (when (fboundp 'terminal-init-bobcat)
   (terminal-init-bobcat))
 
-(define-key global-map (kbd "M-x")     'helm-M-x)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "C-x C-r") 'helm-recentf)
-(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
-(define-key global-map (kbd "C-c i")   'helm-imenu)
-(define-key global-map (kbd "C-x b")   'helm-buffers-list)
+;;(define-key global-map (kbd "M-x")     'helm-M-x)
+;;(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+;;(define-key global-map (kbd "C-x C-r") 'helm-recentf)
+;;(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+;;(define-key global-map (kbd "C-c i")   'helm-imenu)
+;;(define-key global-map (kbd "C-x b")   'helm-buffers-list)
 
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
+;;(define-key helm-map (kbd "C-h") 'delete-backward-char)
+;;(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+;;(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+;;(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 
 
 ;; Disable helm in some functions
-(add-to-list 'helm-completing-read-handlers-alist '(find-alternate-file . nil))
+;;(add-to-list 'helm-completing-read-handlers-alist '(find-alternate-file . nil))
 
 ;; Emulate `kill-line' in helm minibuffer
-(setq helm-delete-minibuffer-contents-from-point t)
-(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
-  "Emulate `kill-line' in helm minibuffer"
-  (kill-new (buffer-substring (point) (field-end))))
+;;(setq helm-delete-minibuffer-contents-from-point t)
+;;(defadvice helm-delete-minibuffer-contents (before helm-emulate-kill-line activate)
+;;  "Emulate `kill-line' in helm minibuffer"
+;;  (kill-new (buffer-substring (point) (field-end))))
 
 ;; 新しいバッファを作成しないように
-(defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)
-  "Execute command only if CANDIDATE exists"
-  (when (file-exists-p candidate)
-    ad-do-it))
+;;(defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)
+;;  "Execute command only if CANDIDATE exists"
+;;  (when (file-exists-p candidate)
+;;    ad-do-it))
 
-(defadvice helm-ff-transform-fname-for-completion (around my-transform activate)
-  "Transform the pattern to reflect my intention"
-  (let* ((pattern (ad-get-arg 0))
-         (input-pattern (file-name-nondirectory pattern))
-         (dirname (file-name-directory pattern)))
-    (setq input-pattern (replace-regexp-in-string "\\." "\\\\." input-pattern))
-    (setq ad-return-value
-          (concat dirname
-                  (if (string-match "^\\^" input-pattern)
-                      ;; '^' is a pattern for basename
-                      ;; and not required because the directory name is prepended
-                      (substring input-pattern 1)
-                    (concat ".*" input-pattern))))))
+;;(defadvice helm-ff-transform-fname-for-completion (around my-transform activate)
+;;  "Transform the pattern to reflect my intention"
+;;  (let* ((pattern (ad-get-arg 0))
+;;         (input-pattern (file-name-nondirectory pattern))
+;;         (dirname (file-name-directory pattern)))
+;;    (setq input-pattern (replace-regexp-in-string "\\." "\\\\." input-pattern))
+;;    (setq ad-return-value
+;;          (concat dirname
+;;                  (if (string-match "^\\^" input-pattern)
+;;                      ;; '^' is a pattern for basename
+;;                      ;; and not required because the directory name is prepended
+;;                      (substring input-pattern 1)
+;;                    (concat ".*" input-pattern))))))
 
-(defun helm-buffers-list-pattern-transformer (pattern)
-  (if (equal pattern "")
-      pattern
-    ;; Escape '.' to match '.' instead of an arbitrary character
-    (setq pattern (replace-regexp-in-string "\\." "\\\\." pattern))
-    (let ((first-char (substring pattern 0 1)))
-      (cond ((equal first-char "*")
-             (concat " " pattern))
-            ((equal first-char "=")
-             (concat "*" (substring pattern 1)))
-            (t
-             pattern)))))
+;;(defun helm-buffers-list-pattern-transformer (pattern)
+;;  (if (equal pattern "")
+;;      pattern
+;;    ;; Escape '.' to match '.' instead of an arbitrary character
+;;    (setq pattern (replace-regexp-in-string "\\." "\\\\." pattern))
+;;    (let ((first-char (substring pattern 0 1)))
+;;      (cond ((equal first-char "*")
+;;             (concat " " pattern))
+;;            ((equal first-char "=")
+;;             (concat "*" (substring pattern 1)))
+;;            (t
+;;             pattern)))))
 
-(add-to-list 'helm-source-buffers-list
-             '(pattern-transformer helm-buffers-list-pattern-transformer))
+;;(add-to-list 'helm-source-buffers-list
+;;             '(pattern-transformer helm-buffers-list-pattern-transformer))
 
 
-(define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
+;;(define-key global-map "\C-q" 'helm-resume) ; helm間違えた時元に戻るコマンド
 
 ;; dired の拡張
 (setq dired-dwim-target t)
 
 
 ;; helm ls git 
-(require 'helm-ls-git)
-(define-key global-map (kbd "C-x g") 'helm-ls-git-ls)
+;;(require 'helm-ls-git)
+;;(define-key global-map (kbd "C-x g") 'helm-ls-git-ls)
 
 ;; helm recentf only directories
-(defvar helm-c-recentf-directory-source
-  '((name . "Recentf Directry")
-    (candidates . (lambda ()
-                    (loop for file in recentf-list
-                          when (file-directory-p file)
-                          collect file)))
-    (type . file)))
+;;(defvar helm-c-recentf-directory-source
+;;  '((name . "Recentf Directry")
+;;    (candidates . (lambda ()
+;;                    (loop for file in recentf-list
+;;                          when (file-directory-p file)
+;;                          collect file)))
+;;    (type . file)))
 
-(defun my/helm-recentf (arg)
-  (interactive "P")
-  (if current-prefix-arg
-      (helm-other-buffer helm-c-recentf-directory-source "*helm recentf*")
-    (call-interactively 'helm-recentf)))
+;;(defun my/helm-recentf (arg)
+;;  (interactive "P")
+;;  (if current-prefix-arg
+;;      (helm-other-buffer helm-c-recentf-directory-source "*helm recentf*")
+;;    (call-interactively 'helm-recentf)))
 
 
 (require 'git-gutter)
